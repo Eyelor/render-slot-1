@@ -5,7 +5,6 @@ const geoip = require('geoip-lite');
 const requestHandler = (request, response) => {
   // Pobranie adresu IP klienta
   const clientIP = request.connection.remoteAddress;
-  
 
   // Ustalenie strefy czasowej i lokalizacji klienta na podstawie adresu IP
   const clientGeo = geoip.lookup(clientIP);
@@ -16,6 +15,9 @@ const requestHandler = (request, response) => {
   // Pobranie daty i godziny w strefie czasowej klienta
   const clientTime = new Date().toLocaleString(clientLocale, {timeZone: clientTimeZone});
 
+  // Pobranie daty i godziny serwera
+  const serverTime = new Date().toLocaleString(clientLocale);
+
   // Ustawienie nagłówka odpowiedzi
   response.writeHead(200, {'Content-Type': 'text/html'});
 
@@ -23,13 +25,14 @@ const requestHandler = (request, response) => {
   const htmlContent = `
     <html>
       <head>
-        <title>Informacje o kliencie</title>
+        <title>Dane klienta</title>
       </head>
       <body>
-        <h1>Informacje o kliencie</h1>
+        <h1>Dane klienta</h1>
         <p>Adres IP klienta: ${clientIP}</p>
         <p>Strefa czasowa klienta: ${clientTimeZone}</p>
         <p>Data i godzina w strefie czasowej klienta: ${clientTime}</p>
+        <p>Data i godzina serwera: ${serverTime}</p>
       </body>
     </html>
   `;
@@ -57,5 +60,5 @@ server.listen(port, host, (err) => {
   const currentDate = new Date().toLocaleString('pl-PL');
 
   // Wyświetlenie informacji o uruchomieniu serwera
-  console.log(`Serwer został uruchomiony dnia ${currentDate} przez Jakuba Kopeć na porcie ${port}`);
+  console.log(`Serwer został uruchomiony na porcie ${port}, data: ${currentDate}, autor Jakub Kopeć`);
 });
