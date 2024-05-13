@@ -4,7 +4,7 @@ const geoip = require('geoip-lite');
 // Funkcja obsługująca zapytania HTTP
 const requestHandler = (request, response) => {
   // Pobranie adresu IP klienta
-  const clientIP = request.connection.remoteAddress;
+  const clientIP = request.socket.remoteAddress;
 
   // Ustalenie strefy czasowej i lokalizacji klienta na podstawie adresu IP
   const clientGeo = geoip.lookup(clientIP);
