@@ -4,7 +4,9 @@ const geoip = require('geoip-lite');
 // Funkcja obsługująca zapytania HTTP
 const requestHandler = (request, response) => {
   // Pobranie adresu IP klienta
+  //const clientIP = request.connection.remoteAddress;
   const clientIP = request.socket.remoteAddress;
+  const clientIPForwarded = request.headers['x-forwarded-for'];
 
   // Ustalenie strefy czasowej i lokalizacji klienta na podstawie adresu IP
   const clientGeo = geoip.lookup(clientIP);
@@ -30,6 +32,7 @@ const requestHandler = (request, response) => {
       <body>
         <h1>Dane klienta</h1>
         <p>Adres IP klienta: ${clientIP}</p>
+        <p>Adresy IP forwarded klienta: ${clientIPForwarded}</p>
         <p>Strefa czasowa klienta: ${clientTimeZone}</p>
         <p>Data i godzina w strefie czasowej klienta: ${clientTime}</p>
         <p>Data i godzina serwera: ${serverTime}</p>
