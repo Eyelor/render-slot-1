@@ -1,66 +1,69 @@
 const http = require('http');
 const geoip = require('geoip-lite');
 
-// Funkcja obsługująca zapytania HTTP
+// Function handling HTTP requests
 const requestHandler = (request, response) => {
-  // Pobranie adresu IP klienta
+  // Get client's IP address
   const clientIP = request.socket.remoteAddress;
+
+  // Get client's IP address from X-Forwarded-For header
   const clientForwardedIPs = request.headers['x-forwarded-for'];
+
+  // Determine the real client IP address (based on X-Forwarded-For header or the IP address from HTTP header if X-Forwarded-For header is not defined)
   const clientRealIP = (clientForwardedIPs && clientForwardedIPs.split(',')[0].trim()) || clientIP;
 
-  // Ustalenie strefy czasowej i lokalizacji klienta na podstawie adresu IP
+  // Determine client's timezone and location based on IP address (if fails, default to UTC timezone with en locale format)
   const clientGeo = geoip.lookup(clientRealIP);
-
   const clientTimeZone = clientGeo && clientGeo.timezone ? clientGeo.timezone : 'UTC';
   const clientLocale = clientGeo && clientGeo.country ? clientGeo.country.toLowerCase() : 'en';
 
-  // Pobranie daty i godziny w strefie czasowej klienta
+  // Get client's date and time in client's timezone
   const clientTime = new Date().toLocaleString(clientLocale, {timeZone: clientTimeZone});
 
-  // Pobranie daty i godziny serwera
+  // Get server's date and time
   const serverTime = new Date().toLocaleString(clientLocale);
 
-  // Ustawienie nagłówka odpowiedzi
+  // Set response header
   response.writeHead(200, {'Content-Type': 'text/html'});
 
-  // Generowanie treści strony
+  // Generate page content
   const htmlContent = `
     <html>
       <head>
-        <title>Dane klienta</title>
+        <title>Client Data</title>
       </head>
       <body>
-        <h1>Dane klienta</h1>
-        <p>Adres IP klienta: ${clientRealIP}</p>
-        <p>Strefa czasowa klienta: ${clientTimeZone}</p>
-        <p>Data i godzina w strefie czasowej klienta: ${clientTime}</p>
-        <p>Data i godzina serwera: ${serverTime}</p>
+        <h1>Client Data</h1>
+        <p>Client IP address: ${clientRealIP}</p>
+        <p>Client timezone: ${clientTimeZone}</p>
+        <p>Date and time in client's timezone: ${clientTime}</p>
+        <p>Server date and time: ${serverTime}</p>
       </body>
     </html>
   `;
 
-  // Wysłanie odpowiedzi do klienta
+  // Send response to client
   response.end(htmlContent);
 };
 
-// Utworzenie serwera HTTP
+// Create HTTP server
 const server = http.createServer(requestHandler);
 
-// Konfiguracja hosta
+// Configure host
 const host = '0.0.0.0';
 
-// Konfiguracja portu
+// Configure port (if not defined in PORT environment variable, set to 3000)
 const port = process.env.PORT || 3000;
 
-// Uruchomienie serwera
+// Run the server
 server.listen(port, host, (err) => {
   if (err) {
-    return console.log('Błąd podczas uruchamiania serwera:', err);
+    return console.log('Error while starting the server:', err);
   }
 
-  // Pobranie aktualnej daty i godziny
+  // Get current date and time
   const currentDate = new Date().toLocaleString('pl-PL');
 
-  // Wyświetlenie informacji o uruchomieniu serwera
-  console.log(`Serwer został uruchomiony na porcie ${port}, data: ${currentDate}, autor Jakub Kopeć`);
+  // Display server startup information
+  console.log(`Server has been started on port ${port}, date: ${currentDate}, author: Jakub Kopeć`);
 });
