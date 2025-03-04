@@ -67,7 +67,7 @@ Render-Slot-1 solves the problem of inconsistent geolocation data by providing a
 			<table>
 			<tr>
 				<td><b><a href='./package-lock.json'>package-lock.json</a></b></td>
-				<td>- The `package-lock.json` file serves as the backbone of the project's dependency management, outlining the required packages and their versions for the entire codebase<br>- This file ensures consistency and reproducibility across different environments, allowing for seamless collaboration and deployment.
+				<td>- The package-lock.json file serves as the backbone of the project's dependency management, outlining the required packages and their versions for the entire codebase<br>- This file ensures consistency and reproducibility across different environments, allowing for seamless collaboration and deployment.
 
 In essence, this file achieves the following:
 
