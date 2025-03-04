@@ -106,12 +106,14 @@ Install render-slot-1 using the following method:
 
 1. Clone the render-slot-1 repository:
 ```sh
-❯ git clone https://github.com/Eyelor/render-slot-1
+git clone https://github.com/Eyelor/render-slot-1
 ```
+
+or manually download and unzipp.
 
 2. Navigate to the project directory:
 ```sh
-❯ cd render-slot-1
+cd render-slot-1
 ```
 
 3. Install the project dependencies:
@@ -119,7 +121,7 @@ Install render-slot-1 using the following method:
 **Using `npm`**
 
 ```sh
-❯ npm install geoip-lite
+npm install geoip-lite
 ```
 
 
@@ -129,7 +131,7 @@ Run render-slot-1 using the following command:
 **Using `node`**
 
 ```sh
-❯ node server.js
+node server.js
 ```
 
 
