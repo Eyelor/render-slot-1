@@ -15,15 +15,15 @@
 
 ##  Table of Contents
 
-- [ Overview](#-overview)
-- [ Features](#-features)
-- [ Project Structure](#-project-structure)
-  - [ Project Index](#-project-index)
-- [ Getting Started](#-getting-started)
-  - [ Prerequisites](#-prerequisites)
-  - [ Installation](#-installation)
-  - [ Usage](#-usage)
-- [ License](#-license)
+- [ Overview](#overview)
+- [ Features](#features)
+- [ Project Structure](#project-structure)
+  - [ Project Index](#project-index)
+- [ Getting Started](#getting-started)
+  - [ Prerequisites](#prerequisites)
+  - [ Installation](#installation)
+  - [ Usage](#usage)
+- [ License](#license)
 
 ---
 
@@ -54,7 +54,6 @@ Render-Slot-1 solves the problem of inconsistent geolocation data by providing a
 └── render-slot-1/
     ├── package-lock.json
     ├── package.json
-    ├── README.md
     └── server.js
 ```
 
