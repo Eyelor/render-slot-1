@@ -1,7 +1,7 @@
 <p align="center"><h1 align="center">RENDER-SLOT-1</h1></p>
 <p align="center">
-	<em>Repository for <a href="https://render.com">render.com</a> hosting.</em><br>
-  <em>Website connected to this repository: <a href="https://render-slot-1.onrender.com/">render-slot-1.onrender.com</a></em>
+	<em>Repository for <a target="_blank" href="https://render.com">render.com</a> hosting.</em><br>
+  	<em>Website connected to this repository: <a target="_blank" href="https://render-slot-1.onrender.com/">render-slot-1.onrender.com</a></em>
 </p>
 <p align="center">
 	<!-- local repository, no metadata badges. --></p>
@@ -9,7 +9,7 @@
 <p align="center">
 	<img src="https://img.shields.io/badge/npm-CB3837.svg?style=default&logo=npm&logoColor=white" alt="npm">
 	<img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=default&logo=JavaScript&logoColor=black" alt="JavaScript">
-  <img src="https://img.shields.io/badge/Node.js-83CD29.svg?style=default&logo=Node.js&logoColor=white" alt="Node.js">
+  	<img src="https://img.shields.io/badge/Node.js-83CD29.svg?style=default&logo=Node.js&logoColor=white" alt="Node.js">
 </p>
 <br>
 
